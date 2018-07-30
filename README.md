@@ -4,7 +4,7 @@ Apache Hadoop terdiri dari beberapa komponen penting yang dapat digunakan untuk 
 
 ---
 
-### Hardware Instalasi
+## Hardware Instalasi
 - VirtualMachine
 - 1 Core Processor
 - 1GB Memory
@@ -13,13 +13,13 @@ Apache Hadoop terdiri dari beberapa komponen penting yang dapat digunakan untuk 
 
 ---
 
-### Kebutuhan Software
+## Kebutuhan Software
 - Java 8 JDK
 ```
 apt update && apt upgrade -y
 apt install -y openjdk-8-jdk
 ```
-- ssh & pdsh
+- SSH & PDSH
 ```
 apt install -y ssh pdsh
 ```
@@ -28,7 +28,7 @@ Setelah menjalankan perintah di atas, pastikan tidak muncul log error apapun. Ha
 
 ---
 
-### Step Instalasi
+## Step Instalasi
 ### 1. Download Hadoop 3.1.0
 ```
 wget http://apache.cs.utah.edu/hadoop/common/hadoop-3.1.0/hadoop-3.1.0.tar.gz
@@ -136,7 +136,7 @@ sbin/start-yarn.sh
 
 ---
 
-### Lakukan Uji Coba Hadoop
+## Lakukan Uji Coba Hadoop
 Pengujian Hadoop dilakukan dengan menjalankan perintah berikut:
 ```
 bin/yarn jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.0.jar pi 16 1000
