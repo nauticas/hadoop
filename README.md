@@ -29,7 +29,7 @@ Setelah menjalankan perintah di atas, pastikan tidak muncul log error apapun. Ha
 ---
 
 ### Step Instalasi
-# 1. Download Hadoop 3.1.0
+### 1. Download Hadoop 3.1.0
 ```
 wget http://apache.cs.utah.edu/hadoop/common/hadoop-3.1.0/hadoop-3.1.0.tar.gz
 tar -xzvf hadoop-3.1.0.tar.gz
@@ -38,7 +38,7 @@ cd hadoop-3.1.0/
 
 Pada sistem yang dibuat, digunakan Hadoop versi 3.1.0 dengan mengunduh source-code dari domain apache.cs.utah.edu. Seluruh proses yang dikerjakan pada kegiatan ini dilakukan menggunakan hak akses root. Karena file yang diunduh menggunakan format `tar.gz`, dilakukan dekompresi file menggunakan perintah `tar -zxvf`.
 
-# 1. Sesuaikan konfigurasi Hadoop
+### 1. Sesuaikan konfigurasi Hadoop
     **- etc/hadoop/hdoop-env.sh**
     ```
     export JAVA_HOME=/usr
@@ -62,7 +62,7 @@ Pada sistem yang dibuat, digunakan Hadoop versi 3.1.0 dengan mengunduh source-co
     </configuration>
     ```
 
-# 1. Buat ssh key pairs
+### 1. Buat ssh key pairs
 ```
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
@@ -70,7 +70,7 @@ chmod 0600 ~/.ssh/authorized_keys
 echo "ssh" > /etc/pdsh/rcmd_default
 ```
 
-# 1. Pasang environtment Hadoop pada ~/.bashrc
+### 1. Pasang environtment Hadoop pada ~/.bashrc
 ```
 export HDFS_NAMENODE_USER="root"
 export HDFS_DATANODE_USER="root"
@@ -79,13 +79,13 @@ export YARN_RESOURCEMANAGER_USER="root"
 export YARN_NODEMANAGER_USER="root"
 ```
 
-# 1. Format HDFS filesystem dan jalankan HDFS
+### 1. Format HDFS filesystem dan jalankan HDFS
 ```
 bin/hdfs namenode -format
 sbin/start-dfs.sh
 ```
 
-# 1. Sesuaikan konfigurasi YARN
+### 1. Sesuaikan konfigurasi YARN
     **- Buat direktori kerja YARN**
     ```
     bin/hdfs dfs -mkdir /user
@@ -124,7 +124,7 @@ sbin/start-dfs.sh
     </property>
     ```
 
-# 1. Jalankan YARN
+### 1. Jalankan YARN
 ```
 sbin/start-yarn.sh
 ```
