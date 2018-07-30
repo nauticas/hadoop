@@ -39,31 +39,34 @@ cd hadoop-3.1.0/
 Pada sistem yang dibuat, digunakan Hadoop versi 3.1.0 dengan mengunduh source-code dari domain apache.cs.utah.edu. Seluruh proses yang dikerjakan pada kegiatan ini dilakukan menggunakan hak akses root. Karena file yang diunduh menggunakan format `tar.gz`, dilakukan dekompresi file menggunakan perintah `tar -zxvf`.
 
 ### 2. Sesuaikan konfigurasi Hadoop
-    **- etc/hadoop/hdoop-env.sh**
-    Environment ini dibutuhkan agar Hadoop mengenali lokasi jdk.
-    ```
-    export JAVA_HOME=/usr
-    ```
-    **- etc/hadoop/core-site.xml**
-    Pada konfigurasi ini Hadoop akan berjalan pada port 9000.
-    ```
-    <configuration>
+
+- etc/hadoop/hdoop-env.sh
+Environment ini dibutuhkan agar Hadoop mengenali lokasi jdk.
+```
+export JAVA_HOME=/usr
+```
+
+- etc/hadoop/core-site.xml
+Pada konfigurasi ini Hadoop akan berjalan pada port 9000.
+```
+   <configuration>
         <property>
             <name>fs.defaultFS</name>
             <value>hdfs://localhost:9000</value>
         </property>
-    </configuration>
-    ```
-    **- etc/hadoop/hdfs-site.xml**
-    Pada konfigurasi ini Hadoop akan menjalankan 1 replika.
-    ```
+   </configuration>
+```
+
+- etc/hadoop/hdfs-site.xml
+Pada konfigurasi ini Hadoop akan menjalankan 1 replika.
+```
     <configuration>
         <property>
             <name>dfs.replication</name>
             <value>1</value>
         </property>
     </configuration>
-    ```
+```
 
 ### 3. Buat ssh key pairs
 ```
@@ -93,22 +96,24 @@ sbin/start-dfs.sh
 ![alt text](https://github.com/nauticas/hadoop-standalone/blob/master/images/HDFS-Web_Interface_2.jpg "Output 2 HDFS Web Interface")
 
 ### 6. Sesuaikan konfigurasi YARN
-    **- Buat direktori kerja YARN**
-    ```
+- Buat direktori kerja YARN
+```
     bin/hdfs dfs -mkdir /user
     bin/hdfs dfs -mkdir /user/root
-    ```
-    **- etc/hadoop/mapred-site.xml**
-    ```
+```
+
+- etc/hadoop/mapred-site.xml
+```
     <configuration>
         <property>
             <name>mapreduce.framework.name</name>
             <value>yarn</value>
         </property>
     </configuration>
-    ```
-    **- etc/hadoop/yarn-site.xml**
-    ```
+```
+
+- etc/hadoop/yarn-site.xml
+```
     <property>
             <name>yarn.nodemanager.aux-services</name>
             <value>mapreduce_shuffle</value>
@@ -129,7 +134,7 @@ sbin/start-dfs.sh
             <name>mapreduce.reduce.env</name>
             <value>HADOOP_MAPRED_HOME=/root/hadoop-3.1.0</value>
     </property>
-    ```
+```
 
 ### 7. Jalankan YARN
 ```
