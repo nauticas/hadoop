@@ -40,10 +40,12 @@ Pada sistem yang dibuat, digunakan Hadoop versi 3.1.0 dengan mengunduh source-co
 
 ### 1. Sesuaikan konfigurasi Hadoop
     **- etc/hadoop/hdoop-env.sh**
+    Environment ini dibutuhkan agar Hadoop mengenali lokasi jdk.
     ```
     export JAVA_HOME=/usr
     ```
     **- etc/hadoop/core-site.xml**
+    Pada konfigurasi ini Hadoop akan berjalan pada port 9000.
     ```
     <configuration>
         <property>
@@ -53,6 +55,7 @@ Pada sistem yang dibuat, digunakan Hadoop versi 3.1.0 dengan mengunduh source-co
     </configuration>
     ```
     **- etc/hadoop/hdfs-site.xml**
+    Pada konfigurasi ini Hadoop akan menjalankan 1 replika.
     ```
     <configuration>
         <property>
@@ -69,6 +72,7 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 0600 ~/.ssh/authorized_keys
 echo "ssh" > /etc/pdsh/rcmd_default
 ```
+SSH keypairs digunakan untuk membuka soket ssh sehingga hadoop dapat berjalan dengan baik. Penggunaan keypairs adalah agar ssh bisa berjalan tanpa memasukkan autentikasi standar (username/password). Tidak ada perbedaan generate ssh keypair pada Hadoop dengan generate ssh keypair pada umumnya.
 
 ### 1. Pasang environtment Hadoop pada ~/.bashrc
 ```
@@ -78,6 +82,7 @@ export HDFS_SECONDARYNAMENODE_USER="root"
 export YARN_RESOURCEMANAGER_USER="root"
 export YARN_NODEMANAGER_USER="root"
 ```
+Pada tahap ini dilakukan pengaturan environment HDFS dan YARN untuk NameNode, DataNode, ResourceManager, dan NODEMANAGER. Nantinya environment tersebut akan digunakan pada file konfigurasi site yarn.
 
 ### 1. Format HDFS filesystem dan jalankan HDFS
 ```
