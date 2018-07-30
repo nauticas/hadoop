@@ -4,7 +4,7 @@ Apache Hadoop terdiri dari beberapa komponen penting yang dapat digunakan untuk 
 
 ---
 
-### Hardware Instalasi
+## Hardware Instalasi
 - VirtualMachine
 - 1 Core Processor
 - 1GB Memory
@@ -13,13 +13,13 @@ Apache Hadoop terdiri dari beberapa komponen penting yang dapat digunakan untuk 
 
 ---
 
-### Kebutuhan Software
+## Kebutuhan Software
 - Java 8 JDK
 ```
 apt update && apt upgrade -y
 apt install -y openjdk-8-jdk
 ```
-- ssh & pdsh
+- SSH & PDSH
 ```
 apt install -y ssh pdsh
 ```
@@ -28,8 +28,8 @@ Setelah menjalankan perintah di atas, pastikan tidak muncul log error apapun. Ha
 
 ---
 
-### Step Instalasi
-# 1. Download Hadoop 3.1.0
+## Step Instalasi
+### 1. Download Hadoop 3.1.0
 ```
 wget http://apache.cs.utah.edu/hadoop/common/hadoop-3.1.0/hadoop-3.1.0.tar.gz
 tar -xzvf hadoop-3.1.0.tar.gz
@@ -38,12 +38,14 @@ cd hadoop-3.1.0/
 
 Pada sistem yang dibuat, digunakan Hadoop versi 3.1.0 dengan mengunduh source-code dari domain apache.cs.utah.edu. Seluruh proses yang dikerjakan pada kegiatan ini dilakukan menggunakan hak akses root. Karena file yang diunduh menggunakan format `tar.gz`, dilakukan dekompresi file menggunakan perintah `tar -zxvf`.
 
-# 1. Sesuaikan konfigurasi Hadoop
+### 2. Sesuaikan konfigurasi Hadoop
     **- etc/hadoop/hdoop-env.sh**
+    Environment ini dibutuhkan agar Hadoop mengenali lokasi jdk.
     ```
     export JAVA_HOME=/usr
     ```
     **- etc/hadoop/core-site.xml**
+    Pada konfigurasi ini Hadoop akan berjalan pada port 9000.
     ```
     <configuration>
         <property>
@@ -53,6 +55,7 @@ Pada sistem yang dibuat, digunakan Hadoop versi 3.1.0 dengan mengunduh source-co
     </configuration>
     ```
     **- etc/hadoop/hdfs-site.xml**
+    Pada konfigurasi ini Hadoop akan menjalankan 1 replika.
     ```
     <configuration>
         <property>
@@ -62,15 +65,16 @@ Pada sistem yang dibuat, digunakan Hadoop versi 3.1.0 dengan mengunduh source-co
     </configuration>
     ```
 
-# 1. Buat ssh key pairs
+### 3. Buat ssh key pairs
 ```
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 0600 ~/.ssh/authorized_keys
 echo "ssh" > /etc/pdsh/rcmd_default
 ```
+SSH keypairs digunakan untuk membuka soket ssh sehingga hadoop dapat berjalan dengan baik. Penggunaan keypairs adalah agar ssh bisa berjalan tanpa memasukkan autentikasi standar (username/password). Tidak ada perbedaan generate ssh keypair pada Hadoop dengan generate ssh keypair pada umumnya.
 
-# 1. Pasang environtment Hadoop pada ~/.bashrc
+### 4. Pasang environtment Hadoop pada ~/.bashrc
 ```
 export HDFS_NAMENODE_USER="root"
 export HDFS_DATANODE_USER="root"
@@ -78,14 +82,15 @@ export HDFS_SECONDARYNAMENODE_USER="root"
 export YARN_RESOURCEMANAGER_USER="root"
 export YARN_NODEMANAGER_USER="root"
 ```
+Pada tahap ini dilakukan pengaturan environment HDFS dan YARN untuk NameNode, DataNode, ResourceManager, dan NODEMANAGER. Nantinya environment tersebut akan digunakan pada file konfigurasi site yarn-site.
 
-# 1. Format HDFS filesystem dan jalankan HDFS
+### 5. Format HDFS filesystem dan jalankan HDFS
 ```
 bin/hdfs namenode -format
 sbin/start-dfs.sh
 ```
 
-# 1. Sesuaikan konfigurasi YARN
+### 6. Sesuaikan konfigurasi YARN
     **- Buat direktori kerja YARN**
     ```
     bin/hdfs dfs -mkdir /user
@@ -124,14 +129,14 @@ sbin/start-dfs.sh
     </property>
     ```
 
-# 1. Jalankan YARN
+### 7. Jalankan YARN
 ```
 sbin/start-yarn.sh
 ```
 
 ---
 
-### Lakukan Uji Coba Hadoop
+## Lakukan Uji Coba Hadoop
 Pengujian Hadoop dilakukan dengan menjalankan perintah berikut:
 ```
 bin/yarn jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.0.jar pi 16 1000
