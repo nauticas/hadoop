@@ -89,6 +89,8 @@ Pada tahap ini dilakukan pengaturan environment HDFS dan YARN untuk NameNode, Da
 bin/hdfs namenode -format
 sbin/start-dfs.sh
 ```
+![alt text](https://github.com/nauticas/hadoop-standalone/blob/master/images/HDFS-Web_Interface_1.jpg "Output 1 HDFS Web Interface")
+![alt text](https://github.com/nauticas/hadoop-standalone/blob/master/images/HDFS-Web_Interface_2.jpg "Output 2 HDFS Web Interface")
 
 ### 6. Sesuaikan konfigurasi YARN
     **- Buat direktori kerja YARN**
@@ -133,6 +135,7 @@ sbin/start-dfs.sh
 ```
 sbin/start-yarn.sh
 ```
+![alt text](https://github.com/nauticas/hadoop-standalone/blob/master/images/Yarn-Web_Interface.jpg "Output YARN Web Interface")
 
 ---
 
@@ -147,4 +150,8 @@ bin/yarn jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.0.jar pi 16 10
 Job Finished in 240.177 seconds
 Estimated value of Pi is 3.14250000000000000000
 ```
+![alt text](https://github.com/nauticas/hadoop-standalone/blob/master/images/Yarn-Test_Output_1.jpg "Output 1 Test YARN")
+![alt text](https://github.com/nauticas/hadoop-standalone/blob/master/images/Yarn-Test_Output_2.jpg "Output 2 Test YARN")
+
 Menggunakan `yarn`, dilakukan penghitungan nilai `PI` sampai nilai desimal `16` menggunakan metode `quasiMonteCarlo`. Pengujian berlangsung selama sekitar 240 detik pada sistem yang sudah dibuat.
+
